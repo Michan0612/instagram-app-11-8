@@ -1,0 +1,30 @@
+@import 'form';
+@import 'variables';
+
+body {
+    margin: 0;
+}
+
+.container-body {
+    overflow: hidden;
+}
+
+.link {
+    color: #CCCCCC;
+}
+
+.wrap {
+    text-align: right;
+}
+
+.border {
+    background-color: #252222;
+    height: 5px;
+    margin: 0 auto;
+    margin-top: 70px;
+    width: 40%
+}
+
+.img {
+    width: 100%;
+}
