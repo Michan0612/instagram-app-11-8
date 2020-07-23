@@ -1,0 +1,17 @@
+.container
+  .border_room
+  = image_tag 'Rectangle.png', class: 'img'
+  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+    .field
+      = f.label :email, class: 'text'
+      %br/
+      = f.email_field :email, autofocus: true, autocomplete: "email", class: 'input_room'
+    .field.field2
+      = f.label :password, class: 'text'
+      %br/
+      = f.password_field :password, autocomplete: "current-password", class: 'input_room'
+      = render "devise/shared/links"  
+    .actions
+      = f.submit "LOGIN", class: 'submit_btn'
+  .border
+ 
