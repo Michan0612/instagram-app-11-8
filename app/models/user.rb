@@ -8,4 +8,10 @@ class User < ApplicationRecord
              presence: true, 
              uniqueness: true,
              length: { minimum: 4, maximum: 20 }
+
+  has_one :profile
+
+  def display_name
+    profile&.nickname || self.email.split('@').first
+  end
 end

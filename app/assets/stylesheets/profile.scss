@@ -1,0 +1,73 @@
+$avatar-size: 76.88px;
+
+.container {
+    .header {
+        display: flex;
+
+        .profile-name {
+            margin: 0 auto;
+            font-family: Poppins;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+        }
+    }
+
+    .border_room {
+        margin-top: 35.56px;
+        text-align: center;
+        .avatar-img {
+            width: $avatar-size;
+            height: $avatar-size;
+        }
+    }
+
+    .profile-text {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        margin-top: 46.56px;
+
+        .profile-two {
+            .profile-num {
+                font-family: Poppins;
+                font-style: normal;
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 24px;
+                
+                &.profile-num2 {
+                    margin: 0 76px 0 69px;
+                }
+            }
+            .profile-string {
+                font-family: Poppins;
+                font-style: normal;
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 21px;
+                color: #9E9E9E;
+            }
+        }
+    }
+
+    .grid {
+      margin-bottom: 1.6em;
+      display: flex;
+      flex-flow: column wrap;
+      position: relative;
+
+        .grid-item {
+          width: 207px;
+          position: absolute;
+
+            .grid-img{
+              vertical-align: bottom;
+              margin-bottom: 2px;
+              width: 100%;
+           
+            }
+        } 
+    }
+}
