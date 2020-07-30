@@ -1,0 +1,13 @@
+= form_with(model: profile, url: profile_path, method: 'post', local: true) do |f|
+
+    .circle-avatar
+        %img#avatar_img_prev.hidden{:src => "#"}
+        
+        - if current_user.persisted? && current_user.avatar_image
+            = image_tag current_user.avatar_image, class: 'avatar_present_img'
+            
+        - else
+            = image_tag 'Ellipse.svg', class: 'avatar_present_img'
+            
+            = f.hidden_field :avatar_cache
+        = f.file_field :avatar, id: 'post_img'

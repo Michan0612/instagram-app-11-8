@@ -1,9 +1,9 @@
-.container
+.profile-container
   .header
     %i.fas.fa-arrow-left
     %p.profile-name= current_user.display_name 
   .border_room
-    = image_tag 'Ellipse.svg', class: 'avatar-img'
+    = render 'form', profile: @profile
   .profile-text
     .profile-two
       %p.profile-num 
@@ -21,30 +21,21 @@
       %p.profile-string
         Following
   .grid
-    .grid-item
+    .grid-item-1
       = image_tag 'Rectangle(1).svg', class: 'grid-img'
-    .grid-item
+    .grid-item-2
       = image_tag 'Rectangle(2).svg', class: 'grid-img'
-    .grid-item
+    .grid-item-3
       = image_tag 'Rectangle(3).png', class: 'grid-img'
-    .grid-item
+    .grid-item-4
       = image_tag 'Rectangle(4).png', class: 'grid-img'
-    .grid-item
+    .grid-item-5
       = image_tag 'Rectangle(5).svg', class: 'grid-img'
-    .grid-item
+    .grid-item-6
       = image_tag 'Rectangle(6).png', class: 'grid-img'
 
-  
-  :javascript
-    $(function(){ 
-      var $grid = $('.grid');
-      $grid.imagesLoaded(function(){
-        $grid.masonry({
-          itemSelector: '.grid-item',
-          columnWidth: 207,
-          fitWidth: true
-        });
-      });
-    });
+  .border
 
   
+
+
