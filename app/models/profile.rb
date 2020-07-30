@@ -1,3 +1,4 @@
 class Profile < ApplicationRecord
-    belong_to :user
+    belongs_to :user
+    has_one_attached :avatar
 end
