@@ -16,33 +16,35 @@ import { csrfToken } from 'rails-ujs'
 axios.defaults.headers.common['X-CSRF-Token'] = csrfToken()
 
 document.addEventListener('DOMContentLoaded', () => {
-  function readURL(input) {
-    if (input.files && input.files[0]) {
-      const reader = new FileReader();
-      axios.post('profile') 
+  const reader = new FileReader();
+  const params = new FormData();
+  const imageUpload = document.getElementById("post_img");
 
-        .then((res) => {
+  imageUpload.onchange = function() {
+    const input = this.files[0];
+    params.append('file', input);
 
-          reader.onload = function (e) {
-            $('#avatar_img_prev').attr('src', e.target.result);
-            
+    axios.post('profile', params)
+      .then((res) => {
 
-          }
+        window.alert('成功！')
+
+        reader.onload = function (e) {
+          $('#avatar_img_prev').attr('src', e.target.result);
+        }
     
-          reader.readAsDataURL(input.files[0]);
-          
+        reader.readAsDataURL(input);
+        
+        $('#avatar_img_prev').removeClass('hidden');
+        $('.avatar_present_img').remove();
 
-        } )
-    }
+      })
+
+      .catch((e) => {
+        window.alert('失敗！')
+      })
   }
- 
-  $("#post_img").change(function(){
-    $('#avatar_img_prev').removeClass('hidden');
-    $('.avatar_present_img').remove();
-    
-    readURL(this);
-  });
-
+  
   $('.avatar_present_img').on('click', () => {
     $('#post_img').click()
   })
