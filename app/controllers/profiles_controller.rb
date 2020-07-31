@@ -9,15 +9,6 @@ class ProfilesController < ApplicationController
       @profile = current_user.build_profile
       @profile.save!
 
-      
-
-      render json: @profile
-    end
-
-    def edit
-      @profile = current_user.build_profile
-      @profile.save!
-
       render json: @profile
     end
 end
