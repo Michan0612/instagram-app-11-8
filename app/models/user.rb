@@ -10,6 +10,7 @@ class User < ApplicationRecord
              length: { minimum: 4, maximum: 20 }
 
 has_one :profile, dependent: :destroy
+has_many :items, dependent: :destroy
 
   def display_name
     profile&.nickname || self.email.split('@').first
