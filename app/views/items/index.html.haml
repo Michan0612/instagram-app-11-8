@@ -1,0 +1,4 @@
+%p
+  %strong images:
+  - @item.images.each do |image|
+    = image_tag image.variant(resize: "150x150")
