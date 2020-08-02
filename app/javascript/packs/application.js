@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const input = this.files[0];
     params.append('file', input);
 
-    axios.post('profile', params)
+    axios.put('profile', params)
       .then((res) => {
 
         window.alert('成功！')
