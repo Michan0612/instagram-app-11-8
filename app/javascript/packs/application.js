@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const input = this.files[0];
     params.append('file', input);
 
+
     axios.put('profile', params)
       .then((res) => {
 
@@ -36,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
       })
 
       .catch((e) => {
+
         window.alert('失敗！')
       })
   }
