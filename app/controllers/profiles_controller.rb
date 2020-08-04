@@ -8,7 +8,14 @@ class ProfilesController < ApplicationController
     def update 
       @profile = current_user.profile || current_user.build_profile
       @profile.assign_attributes(profile_params)
-      @profile.save
+
+      binding.pry
+
+      if @profile.save
+        flash[:notice] = '更新できました'
+      else
+        flash.now[:error] = '更新できませんでした'
+      end
 
       render json: @profile
     end
