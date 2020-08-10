@@ -12,14 +12,11 @@ axios.defaults.headers.common['X-CSRF-Token'] = csrfToken()
 
 document.addEventListener('DOMContentLoaded', () => {
   const reader = new FileReader();
-  const params = new FormData();
   const imageUpload = document.getElementById("post_img");
 
   imageUpload.onchange = function() {
-    const input = this.files[0];
-    params.append('file', input);
 
-    axios.post('profile', params)
+    axios.post('profile')
       .then((res) => {
 
         window.alert('成功！')

@@ -9,8 +9,8 @@ class User < ApplicationRecord
              uniqueness: true,
              length: { minimum: 4, maximum: 20 }
 
-has_one :profile, dependent: :destroy
-has_many :items, dependent: :destroy
+  has_one :profile, dependent: :destroy
+  has_many :items, dependent: :destroy
 
   def display_name
     profile&.nickname || self.email.split('@').first
@@ -22,6 +22,10 @@ has_many :items, dependent: :destroy
     else
       'Ellipse.svg'
     end
+  end
+    
+  def prepare_profile
+    profile || build_profile
   end
 
   
