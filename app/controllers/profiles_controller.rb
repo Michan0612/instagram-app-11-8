@@ -31,7 +31,6 @@ class ProfilesController < ApplicationController
     
     private
     def profile_params
-      binding.pry
       params.require(:profile).permit(:avatar)
     end
 end
