@@ -1,9 +1,9 @@
 class ItemsController < ApplicationController
     def index
-        
+        @items = Item.all
     end
 
     def item_params
-        params.require(:item).permit(:name, :description, images: [])
+        params.require(:item).permit(:content, :images)
     end
 end

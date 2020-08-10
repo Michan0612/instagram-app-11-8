@@ -2,8 +2,12 @@
   .header
     %i.fas.fa-arrow-left
     %p.profile-name= current_user.display_name 
+
   .border_room
+    = image_tag current_user.avatar_image, class: 'avatar_present_img'  
+  
     = render 'form', profile: @profile
+
   .profile-text
     .profile-two
       %p.profile-num 
