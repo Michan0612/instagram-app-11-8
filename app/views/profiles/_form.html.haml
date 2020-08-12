@@ -1,5 +1,4 @@
 = form_with(model: profile, url: profile_path, method: 'post', local: true) do |f|
-<<<<<<< HEAD
 
     .circle-avatar
         %img#avatar_img_prev.hidden{:src => "#"}
@@ -12,11 +11,3 @@
             = f.hidden_field :avatar_cache
         = f.file_field :avatar, id: 'post_img'
         = f.submit '保存', class: 'btn-primary'
-=======
-  %img#avatar_img_prev.hidden{:src => "#"}/
-  %div
-    = f.file_field :avatar, id: 'post_img'
-
-  %div
-    = f.submit '保存'
->>>>>>> master
