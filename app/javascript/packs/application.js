@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
@@ -40,5 +40,3 @@ document.addEventListener('DOMContentLoaded', () => {
     $('#post_img').click()
   })
 });
-=======
->>>>>>> master
