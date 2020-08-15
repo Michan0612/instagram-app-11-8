@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const imageUpload = document.getElementById("post_img");
 
   imageUpload.onchange = function() {
+    
     const avatar = $('#post_img').val()
     if(!avatar) {
       window.alert('画像を選択してください')
@@ -23,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
         reader.onload = function (e) {
           $('#avatar_img_prev').attr('src', e.target.result);
         }
-        reader.readAsDataURL(input);
+        reader.readAsDataURL(input.files[0]);
         $('#avatar_img_prev').removeClass('hidden');
         $('.avatar_present_img').remove();
       })
