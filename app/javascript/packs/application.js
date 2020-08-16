@@ -13,21 +13,21 @@ document.addEventListener('DOMContentLoaded', () => {
   const imageUpload = document.getElementById("post_img");
 
   imageUpload.onchange = function() {
-    
-    const avatar = $('#post_img').val()
-    if(!avatar) {
+    var file = $('input[type="file"]').prop('files')[0];
+
+    if(!file) {
       window.alert('画像を選択してください')
     } else {
-      axios.post('/profile', {profile: {avatar: avatar}})
+      axios.post('/profile', {profile: {avatar: file}})
       .then((res) => {
         window.alert('成功！')
         reader.onload = function (e) {
           $('#avatar_img_prev').attr('src', e.target.result);
         }
-        reader.readAsDataURL(input.files[0]);
+        reader.readAsDataURL(file);
+        
         $('#avatar_img_prev').removeClass('hidden');
         $('.avatar_present_img').remove();
-        readURL(this);
       })
 
       .catch((e) => {
