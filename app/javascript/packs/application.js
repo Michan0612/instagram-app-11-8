@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
         reader.readAsDataURL(input.files[0]);
         $('#avatar_img_prev').removeClass('hidden');
         $('.avatar_present_img').remove();
+        readURL(this);
       })
 
       .catch((e) => {
