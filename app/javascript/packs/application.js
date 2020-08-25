@@ -18,14 +18,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if(!file) {
       window.alert('画像を選択してください')
     } else {
-      axios.post('/profile', {profile: {avatar: file}})
+      reader.readAsDataURL(file);
+      reader.onload = function (e) {
+
+        $('#avatar_img_prev').attr('src', e.target.result);
+        axios.post('/profile', {profile: {avatar: e.target.result}})
+        
       .then((res) => {
         window.alert('成功！')
-        reader.onload = function (e) {
-          $('#avatar_img_prev').attr('src', e.target.result);
-        }
-        reader.readAsDataURL(file);
-        
+
         $('#avatar_img_prev').removeClass('hidden');
         $('.avatar_present_img').remove();
       })
@@ -33,6 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
       .catch((e) => {
         window.alert('失敗！')
       })
+      }
+      
     }
   }
 

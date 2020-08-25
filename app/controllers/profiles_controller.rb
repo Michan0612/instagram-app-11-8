@@ -18,9 +18,12 @@ class ProfilesController < ApplicationController
 
     def create
       @profile = current_user.build_profile(profile_params)
-      @profile.save!
-
-      render json: @profile
+      if @profile.save!
+        @profile.parse_base64(params[:avatar])
+        render json: @profile, status: :created, location: @profile
+      else
+        render json: @profile.errors, status: :unprocessable_entity
+      end
     end
     
     
