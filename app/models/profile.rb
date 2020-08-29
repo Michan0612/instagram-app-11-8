@@ -4,11 +4,9 @@ class Profile < ApplicationRecord
     attr_accessor :avatar
 
     def parse_base64(avatar)
+        if avatar.present? == ''
 
-        binding.pry
-
-        if avatar.present? || rex_image(avatar) == ''
-          content_type = create_extension(avatar)
+          content_type = 'png'
           contents = avatar.sub %r/data:((avatar|application)\/.{3,}),/, ''
           decoded_data = Base64.decode64(contents)
           filename = Time.zone.now.to_s + '.' + content_type
@@ -18,14 +16,13 @@ class Profile < ApplicationRecord
         attach_image(filename)
       end
     
-      private
       def create_extension(avatar)
         content_type = rex_image(avatar)
         content_type[%r/\b(?!.*\/).*/]
       end
     
       def rex_image(avatar)
-        current_user.profile.avatar[%r/(image\/[a-z]{3,4})|(application\/[a-z]{3,4})/]
+        avatar[/(image\/[a-z]{3,4})|(application\/[a-z]{3,4})/]
       end
     
       def attach_image(filename)

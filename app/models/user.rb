@@ -27,14 +27,5 @@ class User < ApplicationRecord
   def prepare_profile
     profile || build_profile
   end
-
-  def self.current
-    Thread.current[:user]
-  end
-  
-  def self.current=(user)
-    Thread.current[:user] = user
-  end
-
   
 end
