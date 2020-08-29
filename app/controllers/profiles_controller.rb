@@ -19,8 +19,7 @@ class ProfilesController < ApplicationController
     def create
       @profile = current_user.build_profile(profile_params)
       if @profile.save!
-        @profile.parse_base64(params.require(:profile).permit(:avatar)
-        )
+        @profile.parse_base64(params.require(:profile).permit(:avatar))
 
         render json: @profile, status: :created, location: @profile
       else
