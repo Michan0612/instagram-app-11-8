@@ -4,7 +4,6 @@ class Profile < ApplicationRecord
     attr_accessor :avatar
 
     def parse_base64(avatar)
-        binding.pry
         if avatar.present? == ''
           content_type = 'png'
           contents = avatar.sub %r/data:((avatar|application)\/.{3,}),/, ''
@@ -18,7 +17,6 @@ class Profile < ApplicationRecord
     end
     
     private
-    
     def create_extension(avatar)
         content_type = rex_image(avatar)
         content_type[%r/\b(?!.*\/).*/]
@@ -29,7 +27,7 @@ class Profile < ApplicationRecord
     end
     
     def attach_image(filename)
-        avatar.attach(io: File.open("#{Rails.root}/tmp/#{filename}"), filename: filename)
+        avatar.attach(io: File.open("#{Rails.root}/tmp/#{filename}"), filename: filename, content_type: 'image/png')
         FileUtils.rm("#{Rails.root}/tmp/#{filename}")
     end
 end
