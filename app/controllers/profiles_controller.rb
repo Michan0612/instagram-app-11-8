@@ -13,7 +13,6 @@ class ProfilesController < ApplicationController
     #   @profile = current_user.prepare_profile
     #   @profile.assign_attributes(profile_params)
     #   @profile.save!
-
     #  render json: @profile
 
     def create
@@ -26,6 +25,7 @@ class ProfilesController < ApplicationController
         render json: @profile.errors, status: :unprocessable_entity
       end
     end
+
     
     
     private

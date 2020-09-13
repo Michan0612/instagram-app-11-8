@@ -44,4 +44,3 @@ document.addEventListener('DOMContentLoaded', () => {
     $('#post_img').click()
   })
 });
-
