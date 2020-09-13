@@ -17,8 +17,8 @@ class User < ApplicationRecord
   end
 
   def avatar_image
-    if profile&.avatar&.attached?
-      profile.avatar
+    if profile&.avatar_image&.attached?
+      profile.avatar_image
     else
       'Ellipse.svg'
     end
@@ -27,6 +27,5 @@ class User < ApplicationRecord
   def prepare_profile
     profile || build_profile
   end
-
   
 end
