@@ -9,15 +9,9 @@ class ProfilesController < ApplicationController
       @profile = current_user.prepare_profile
     end
 
-    # def update 
-    #   @profile = current_user.prepare_profile
-    #   @profile.assign_attributes(profile_params)
-    #   @profile.save!
-
-    #  render json: @profile
-
-    def create
-      @profile = current_user.build_profile(profile_params)
+    def update 
+      @profile = current_user.prepare_profile
+      @profile.assign_attributes(profile_params)
       if @profile.save!
         @profile.parse_base64(params[:profile][:avatar])
         
@@ -26,6 +20,17 @@ class ProfilesController < ApplicationController
         render json: @profile.errors, status: :unprocessable_entity
       end
     end
+
+    # def create
+    #   @profile = current_user.build_profile(profile_params)
+    #   if @profile.save!
+    #     @profile.parse_base64(params[:profile][:avatar])
+        
+    #     render json: @profile, status: :created, location: @profile
+    #   else
+    #     render json: @profile.errors, status: :unprocessable_entity
+    #   end
+    # end
     
     
     private

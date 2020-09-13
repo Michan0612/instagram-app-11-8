@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
       reader.onload = function (e) {
 
         $('#avatar_img_prev').attr('src', e.target.result);
-        axios.post('/profile', {profile: {avatar: e.target.result}})
+        axios.put('/profile', {profile: {avatar: e.target.result}})
         
       .then((res) => {
         window.alert('成功！')
