@@ -1,4 +1,3 @@
-
 require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
@@ -14,17 +13,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const imageUpload = document.getElementById("post_img");
 
   imageUpload.onchange = function() {
-    const avatar = $('#post_img').val()
-    if(!avatar) {
+    var file = $('input[type="file"]').prop('files')[0];
+
+    if(!file) {
       window.alert('画像を選択してください')
     } else {
-      axios.post('/profile', {profile: {avatar: avatar}})
+      reader.readAsDataURL(file);
+      reader.onload = function (e) {
+
+        $('#avatar_img_prev').attr('src', e.target.result);
+        axios.post('/profile', {profile: {avatar: e.target.result}})
+        
       .then((res) => {
         window.alert('成功！')
-        reader.onload = function (e) {
-          $('#avatar_img_prev').attr('src', e.target.result);
-        }
-        reader.readAsDataURL(input);
+
         $('#avatar_img_prev').removeClass('hidden');
         $('.avatar_present_img').remove();
       })
@@ -32,6 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
       .catch((e) => {
         window.alert('失敗！')
       })
+      }
+      
     }
   }
 

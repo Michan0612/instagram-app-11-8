@@ -13,15 +13,17 @@ class ProfilesController < ApplicationController
     #   @profile = current_user.prepare_profile
     #   @profile.assign_attributes(profile_params)
     #   @profile.save!
-
-    #   render json: @profile
-    # end
+    #  render json: @profile
 
     def create
       @profile = current_user.build_profile(profile_params)
-      @profile.save!
-      
-      render json: @profile
+      if @profile.save!
+        @profile.parse_base64(params[:profile][:avatar])
+        
+        render json: @profile, status: :created, location: @profile
+      else
+        render json: @profile.errors, status: :unprocessable_entity
+      end
     end
 
     
