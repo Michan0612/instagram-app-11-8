@@ -1,0 +1,43 @@
+.timeline_contain
+  .timeline_header
+    %i.fas.fa-camera
+
+  .timeline_body
+    .timeline_post
+      .timeline_user_info
+        .user_info_icon
+          = image_tag 'timeline_icon', class: 'timeline_icon'
+          .user_info_contain
+            .user_name
+              %p Jmax_21
+            .image_created
+              %p 3 hours ago
+
+      .timeline_user_image
+        .grid_item_timeline1
+          =image_tag 'timeline_image1', class: 'grid_timeline_image1'
+        .grid_item_timeline2
+          =image_tag 'timeline_image2', class: 'grid_timeline_image2'
+        .grid_item_timeline3
+          =image_tag 'timeline_image3', class: 'grid_timeline_image3'
+
+      .timeline_post_icon
+        .post_icon_like.active_heart
+          = image_tag 'heart_active.png'
+        .post_icon_like.inactive-heart
+          = image_tag 'heart_inactive.png'
+        .post_icon_commetn
+          = image_tag 'timeline_comment.png'
+        .post_icon_share
+          = image_tag 'timeline_share.png'
+        
+
+      .timeline_post_like_comment
+        %p Jasmine and 12,000 other liked your post
+
+      .timeline_post_content
+        .post_user_name
+          %p Jmax_21
+        .post_content
+          %p Summer holiday :3
+    
