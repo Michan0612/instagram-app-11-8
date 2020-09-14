@@ -3,8 +3,9 @@ Rails.application.routes.draw do
   root to: 'articles#index'
 
   resources :articles
-  resource :profile
   resources :items
+  resource :timeline
+  resource :profile
 
 
   devise_scope :user do

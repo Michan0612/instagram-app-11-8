@@ -9,24 +9,29 @@ class ProfilesController < ApplicationController
       @profile = current_user.prepare_profile
     end
 
-    # def update 
-    #   @profile = current_user.prepare_profile
-    #   @profile.assign_attributes(profile_params)
+    def update 
+      @profile = current_user.prepare_profile
+      @profile.assign_attributes(profile_params)
+      if @profile.save!
+        @profile.parse_base64(params[:profile][:avatar])
+        
+        render json: @profile, status: :created, location: @profile
+      else
+        render json: @profile.errors, status: :unprocessable_entity
+      end
+    end
+
+    # def create
+    #   @profile = current_user.build_profile(profile_params)
     #   if @profile.save!
-    #     redirect_to profile_path, notice: 'プロフィール更新'
+    #     @profile.parse_base64(params[:profile][:avatar])
+        
+    #     render json: @profile, status: :created, location: @profile
     #   else
-    #     flash.now[:error] = '更新できませんでした'
+    #     render json: @profile.errors, status: :unprocessable_entity
     #   end
     # end
 
-    def create
-      @profile = current_user.build_profile(profile_params)
-      if @profile.save!
-        redirect_to profile_path, notice: 'プロフィール更新'
-      else
-        flash.now[:error] = '更新できませんでした'
-      end
-    end
     
     
     private
