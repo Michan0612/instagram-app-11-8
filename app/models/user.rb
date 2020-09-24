@@ -11,17 +11,14 @@ class User < ApplicationRecord
 
   has_one :profile, dependent: :destroy
   has_many :items, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
   def display_name
     profile&.nickname || self.email.split('@').first
   end
 
-  def avatar_image
-    if profile&.avatar_image&.attached?
-      profile.avatar_image
-    else
-      'Ellipse.svg'
-    end
+  def has_liked?(item)
+    likes.exists?(item_id: item.id)
   end
     
   def prepare_profile

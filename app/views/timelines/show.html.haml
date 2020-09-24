@@ -1,6 +1,7 @@
 .timeline_contain
   .timeline_header
-    %i.fas.fa-camera
+    =link_to new_item_path do
+      %i.fas.fa-camera
 
   .timeline_body
     .timeline_post
@@ -13,19 +14,23 @@
             .image_created
               %p 3 hours ago
 
-      .timeline_user_image
-        .grid_item_timeline1
-          =image_tag 'timeline_image1', class: 'grid_timeline_image1'
-        .grid_item_timeline2
-          =image_tag 'timeline_image2', class: 'grid_timeline_image2'
-        .grid_item_timeline3
-          =image_tag 'timeline_image3', class: 'grid_timeline_image3'
+      = link_to item_path(@user.items.ids), class: 'timeline_post_images' do
+        .timeline_user_image
+          .grid_item_timeline1
+            =image_tag 'timeline_image1', class: 'grid_timeline_image1'
+          .grid_item_timeline2
+            =image_tag 'timeline_image2', class: 'grid_timeline_image2'
+          .grid_item_timeline3
+            =image_tag 'timeline_image3', class: 'grid_timeline_image3'
 
       .timeline_post_icon
-        .post_icon_like.active_heart
-          = image_tag 'heart_active.png'
-        .post_icon_like.inactive-heart
-          = image_tag 'heart_inactive.png'
+        - @items.each do |item|
+          .item#item-show{data: {post_id: item.id}}
+            -if user_signed_in?
+              .post_icon_like.active_heart.hidden
+                = image_tag 'heart_active.png'
+              .post_icon_like.inactive-heart.hidden
+                = image_tag 'heart_inactive.png'
         .post_icon_commetn
           = image_tag 'timeline_comment.png'
         .post_icon_share
@@ -40,4 +45,5 @@
           %p Jmax_21
         .post_content
           %p Summer holiday :3
-    
+          
+  = javascript_pack_tag 'timeline'

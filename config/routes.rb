@@ -1,11 +1,17 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: 'articles#index'
+  root to: 'timelines#show'
 
   resources :articles
-  resources :items
-  resource :timeline
+  resources :items do
+    resources :comments, only: [:index, :new, :create]
+    resource :like, only: [:show, :create, :destroy]
+  end
+  resource :timeline do
+    resource :like, only: [:show, :create, :destroy]
+  end
   resource :profile
+  
 
 
   devise_scope :user do

@@ -1,0 +1,63 @@
+.item_inner
+  .item#item-show{data: {post_id: @item.id}}
+    .timeline_body
+      .timeline_post
+        .back_to_timeline
+          = link_to root_path do
+            %i.fas.fa-arrow-left
+        = link_to profile_path(@item.user), class: 'timeline_item_top' do
+          .timeline_post_top_icon
+            = image_tag @item.user.avatar_image, class: 'item_avatar_img'
+          .timeline_post_top_name
+            .post_author
+              = @item.user.display_name
+            .post_created
+              = @item.created_at
+        .timeline_post_images_wrap
+          - @item.photos.each do |photo|
+            %div{class: "post_image data-post_id-#{photo.id}"}
+              = image_tag photo
+        -# .share
+
+        -#   = image_tag 'heart_active.png', class: 'hidden active-heart'
+        -#   = image_tag 'heart_inactive.png', class: 'hidden inactive-heart'
+        -#   = link_to post_comments_path(@post.id) do
+        -#     %i.far.fa-comment
+
+        -# .timeline_post_likes
+        -#   %p.post_likes= @post.likes.count
+        -#   %p liked your post
+        -# .timeline_post_content
+        -#   %p.post_name= @post.user.account_name
+        -#   %p.post_content= @post.content
+        
+        .timeline_post_icon
+          - if user_signed_in?
+            .post_icon_like.active_heart_wrap.hidden
+              = image_tag 'heart_active.png', class: 'active-heart'
+              %span= @item.like_count
+            .post_icon_like.inactive_heart_wrap.hidden
+              = image_tag 'heart_inactive.png', class: 'inactive-heart'
+          .post_icon_commetn
+            = image_tag 'timeline_comment.png'
+          .post_icon_share
+            = link_to 'https://twitter.com/share?ref_src=twsrc%5Etfw', target: '_blank' do
+              = image_tag 'timeline_share.png'
+        .timeline_post_like_comment
+          %p Jasmine and 12,000 other liked your post
+
+        .timeline_post_content
+          .post_user_name
+            %p Jmax_21
+          .post_content
+            %p Summer holiday :3
+
+        .comments_header
+          %h1 Comments
+        .comments_container
+
+        .comment_text_area.hidden
+          = text_area_tag :comment_content, ''
+          .comment_new.add_comment_btn
+            %span コメントを追加
+
