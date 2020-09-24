@@ -30,6 +30,7 @@ gem 'better_errors'
 gem 'binding_of_caller'
 gem 'active_model_serializers'
 gem 'mini_magick'
+gem 'active_decorator'
 
 
 
