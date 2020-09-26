@@ -15,4 +15,11 @@ class ApplicationController < ActionController::Base
       devise_parameter_sanitizer.permit(:account_update, keys: [:username])
     end
 
+    private
+    def forbid_logout_user
+      if !user_signed_in?
+        redirect_to new_user_session_path, notice: 'You need to sign in'
+      end
+    end
+
 end

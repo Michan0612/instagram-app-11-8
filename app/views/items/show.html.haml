@@ -56,6 +56,8 @@
           %h1 Comments
         .comments_container
 
+        .comment_new.show_comment_form
+          %i.far.fa-comment
         .comment_text_area.hidden
           = text_area_tag :comment_content, ''
           .comment_new.add_comment_btn
