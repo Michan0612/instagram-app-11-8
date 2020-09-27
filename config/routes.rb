@@ -3,13 +3,23 @@ Rails.application.routes.draw do
   root to: 'timelines#show'
 
   resources :articles
+
   resources :items do
     resources :comments, only: [:index, :new, :create]
     resource :like, only: [:show, :create, :destroy]
   end
+
+  resources :accounts, only: [:show] do
+    resource :follow, only: [:show, :create]
+    resource :unfollow, only: [:create]
+    resources :followings, only: [:index]
+    resources :followers, only: [:index]
+  end
+
   resource :timeline do
     resource :like, only: [:show, :create, :destroy]
   end
+
   resource :profile
   
 

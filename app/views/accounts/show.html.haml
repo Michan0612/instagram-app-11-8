@@ -1,0 +1,24 @@
+.inner#account-show{data: {account_id: @user.id}}
+  %h1.account_name= @user.display_name
+  = link_to root_path, class: 'to_timeline' do
+    %i.fas.fa-arrow-left
+  .profile_image.account_image
+    = image_tag @user.avatar_image, class: 'profile_icon'
+    .follow-btn.hidden Follow
+    .unfollow-btn.hidden Unfollow
+  .profile_infos
+    .profile_info.post
+      = @user.items.count
+      %h2 Posts
+    = link_to account_followers_path(@user), class: 'profile_info follower' do
+      = @user.follower_relationships.count
+      %h2 Followers
+    = link_to account_followings_path(@user), class: 'profile_info following' do
+      = @user.following_relationships.count
+      %h2 Following
+  .photos_sec
+    - @user.items.each do |item|
+      = link_to item_path(item) do
+        = image_tag item.photos.first
+  .under
+= javascript_pack_tag 'profile'
