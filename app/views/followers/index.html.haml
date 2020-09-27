@@ -1,0 +1,8 @@
+.inner
+  = link_to 'Profile', profile_path, class: 'to_profile'
+  .followers_index
+    - @user.followers.each do |follower|
+      .follower_account
+        = link_to account_path(follower) do
+          = image_tag follower.avatar_image
+          %p= follower.display_name

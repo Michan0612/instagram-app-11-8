@@ -58,6 +58,14 @@
     .item {
         .timeline_body {
             .timeline_post{
+                .back_to_timeline {
+                    display: flex;
+                    align-items: center;
+
+                    h1 {
+                      margin: 0 auto;
+                    }
+                }
                 .timeline_item_top{
                     margin-top: 63px;
                     display: flex;
@@ -107,10 +115,11 @@
                         }
                     }
                     .post_icon_like.inactive-heart {
-                    margin: 0 12px;
+                    }
+                    .post_icon_commetn {
+                      margin: 0 14px;
                     }
                     .post_icon_share{
-                    margin-left: 14px;
                     }
 
                 }

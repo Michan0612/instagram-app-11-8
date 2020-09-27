@@ -1,0 +1,35 @@
+.comment#item-show{data: {post_id: @item.id}}
+  .comment_top
+    .comment_top_back
+      = link_to 'javascript:history.back()' do
+        %i.fas.fa-arrow-left
+    .comment_top_status
+      Comment
+
+  - @comments.each do |comment|
+    .comment_body
+      .comment_body_left
+        .comment_body_left_avatar
+          - if comment.user === current_user
+            = link_to profile_path do
+              = image_tag comment.user.avatar_image
+          - else 
+            = link_to account_path(comment.user) do
+              = image_tag comment.user.avatar_image
+
+      .comment_body_right
+        .comment_body_right_name
+          = comment.user.display_name
+        .comment_body_right_content
+          = comment.content
+
+  .comments_header
+  
+  .comments_container
+
+  .comment_new.show_comment_form
+    %i.far.fa-comment
+  .comment_text_area.hidden
+    = text_area_tag :comment_content, ''
+    .comment_new.add_comment_btn
+      %span コメントを追加

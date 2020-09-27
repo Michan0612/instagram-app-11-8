@@ -3,8 +3,10 @@
     .timeline_body
       .timeline_post
         .back_to_timeline
-          = link_to root_path do
+          = link_to root_path do 
             %i.fas.fa-arrow-left
+          %h1 Item
+
         = link_to profile_path(@item.user), class: 'timeline_item_top' do
           .timeline_post_top_icon
             = image_tag @item.user.avatar_image, class: 'item_avatar_img'
@@ -35,7 +37,6 @@
           - if user_signed_in?
             .post_icon_like.active_heart_wrap.hidden
               = image_tag 'heart_active.png', class: 'active-heart'
-              %span= @item.like_count
             .post_icon_like.inactive_heart_wrap.hidden
               = image_tag 'heart_inactive.png', class: 'inactive-heart'
           .post_icon_commetn
@@ -44,7 +45,7 @@
             = link_to 'https://twitter.com/share?ref_src=twsrc%5Etfw', target: '_blank' do
               = image_tag 'timeline_share.png'
         .timeline_post_like_comment
-          %p Jasmine and 12,000 other liked your post
+          %p Jasmine and #{@item.like_count} other liked your post
 
         .timeline_post_content
           .post_user_name

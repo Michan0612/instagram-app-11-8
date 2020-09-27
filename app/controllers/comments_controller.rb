@@ -2,9 +2,9 @@ class CommentsController < ApplicationController
     before_action :forbid_logout_user
 
     def index
-        item = Item.find(params[:item_id])
-        comments = item.comments
-        render json: comments
+        @comment = Comment.all
+        @item = Item.find(params[:item_id])
+        @comments = @item.comments
     end
 
     def new

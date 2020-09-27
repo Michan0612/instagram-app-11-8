@@ -13,37 +13,36 @@
               %p Jmax_21
             .image_created
               %p 3 hours ago
+      - @items.each do |item|
+        = link_to item_path(item.id), class: 'timeline_post_images' do
+          .timeline_user_image
+            .grid_item_timeline1
+              =image_tag 'timeline_image1', class: 'grid_timeline_image1'
+            .grid_item_timeline2
+              =image_tag 'timeline_image2', class: 'grid_timeline_image2'
+            .grid_item_timeline3
+              =image_tag 'timeline_image3', class: 'grid_timeline_image3'
 
-      = link_to item_path(@user.items.ids), class: 'timeline_post_images' do
-        .timeline_user_image
-          .grid_item_timeline1
-            =image_tag 'timeline_image1', class: 'grid_timeline_image1'
-          .grid_item_timeline2
-            =image_tag 'timeline_image2', class: 'grid_timeline_image2'
-          .grid_item_timeline3
-            =image_tag 'timeline_image3', class: 'grid_timeline_image3'
-
-      .timeline_post_icon
-        - @items.each do |item|
+        .timeline_post_icon
           .item#item-show{data: {post_id: item.id}}
             -if user_signed_in?
               .post_icon_like.active_heart.hidden
                 = image_tag 'heart_active.png'
               .post_icon_like.inactive-heart.hidden
                 = image_tag 'heart_inactive.png'
-        .post_icon_commetn
-          = image_tag 'timeline_comment.png'
-        .post_icon_share
-          = image_tag 'timeline_share.png'
-        
+          .post_icon_commets
+            = link_to item_comments_path(item) do
+              = image_tag 'timeline_comment.png'
+          .post_icon_share
+            = image_tag 'timeline_share.png'
 
-      .timeline_post_like_comment
-        %p Jasmine and 12,000 other liked your post
+        .timeline_post_like_comment
+          %p Jasmine and #{item.like_count} other liked your post
 
-      .timeline_post_content
-        .post_user_name
-          %p Jmax_21
-        .post_content
-          %p Summer holiday :3
+        .timeline_post_content
+          .post_user_name
+            %p Jmax_21
+          .post_content
+            %p Summer holiday :3
           
   = javascript_pack_tag 'timeline'

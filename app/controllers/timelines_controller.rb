@@ -1,6 +1,6 @@
 class TimelinesController < ApplicationController
     def show
-        @user = current_user
-        @items = @user.items
+        user_ids = current_user.followings.pluck(:id)
+        @items = Item.where(user_id: user_ids)
     end
 end
