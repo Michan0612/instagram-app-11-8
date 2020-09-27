@@ -8,6 +8,6 @@ class Comment < ApplicationRecord
 
     private
     def send_email
-        CommentReplyMailer.send_reply(user, item).deliver_now
+        CommentReplyMailer.send_reply(user, item).deliver_later
     end
 end
