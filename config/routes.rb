@@ -21,6 +21,8 @@ Rails.application.routes.draw do
     resources :followers, only: [:index]
   end
 
+  resource :practice
+
   resource :timeline do
     resource :like, only: [:show, :create, :destroy]
   end

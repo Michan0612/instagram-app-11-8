@@ -1,0 +1,51 @@
+.inner {
+    padding: 16px;
+    .header {
+        display: flex;
+        margin-bottom: 50px;
+
+        .to_profile {
+            margin: 0 auto;
+            font-family: Poppins;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+            text-decoration: none;
+            color: #333333
+        }
+    }
+    .followings_index {
+        .following_account {
+            display: flex;
+            padding: 32px 0;
+
+            font-size: 16px;
+            width: 100%;
+            border-style: none;
+            border-bottom: 1px solid #9E9E9E;
+            a {
+                .avatar_present_img {
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                }
+            }
+            .following_account_info {
+                margin-left: 20px;
+                a {
+                    font-size: 14px;
+                    color: #333333;
+                    text-decoration: none;
+                    p {
+
+                    }
+                }
+                p {
+
+                }
+            }
+        }
+    }
+}

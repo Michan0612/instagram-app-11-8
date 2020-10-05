@@ -1,66 +1,49 @@
-.item_inner
-  .item#item-show{data: {post_id: @item.id}}
-    .timeline_body
-      .timeline_post
-        .back_to_timeline
-          = link_to root_path do 
-            %i.fas.fa-arrow-left
-          %h1 Item
+.item_contain
+  .item_header
+    = link_to account_path(@item.user), class: 'to_account' do
+      %i.fas.fa-arrow-left
+    = link_to 'Items', profile_path, class: 'to_profile'
+      
+  .item_body
+    .item_post#item-show{data: {post_id: @item.id}}
+      = link_to account_path(@item.user), class: 'item_post_top' do
+        .item_post_top_icon
+          = image_tag @item.user.avatar_image
+        .item_post_top_name
+          .post_author
+            = @item.user.display_name
+          .post_created
+            = @item.created_at
+      .item_post_images
+        .item_post_container
+          .slideshow
+            %div{:class => "grid slideshow_slides_1"}
+              - @item.photos.each_with_index do |photo, index2|
+                = link_to item_path(@item.id), {:class => "slide grid_item_#{index2+1}"} do
+                  = image_tag photo
 
-        = link_to profile_path(@item.user), class: 'timeline_item_top' do
-          .timeline_post_top_icon
-            = image_tag @item.user.avatar_image, class: 'item_avatar_img'
-          .timeline_post_top_name
-            .post_author
-              = @item.user.display_name
-            .post_created
-              = @item.created_at
-        .timeline_post_images_wrap
-          - @item.photos.each do |photo|
-            %div{class: "post_image data-post_id-#{photo.id}"}
-              = image_tag photo
-        -# .share
+            %div{:class => "slideshow_indicator slideshow_indicator_1"}
+      
+      .item_post_icon
+        - if user_signed_in?
+          .post_icon_like.active_heart_wrap.hidden
+            = image_tag 'heart_active.png', class: 'active-heart'
+          .post_icon_like.inactive_heart_wrap.hidden
+            = image_tag 'heart_inactive.png', class: 'inactive-heart'
+        .post_icon_comment
+          = image_tag 'timeline_comment.png'
+        .post_icon_share
+          = link_to 'https://twitter.com/share?ref_src=twsrc%5Etfw', target: '_blank' do
+            = image_tag 'timeline_share.png'
+      .item_post_likes
+        %span.post_likes= @item.likes.count
+        %span liked your post
+      .item_post_content
+        %span.post_name= @item.user.display_name
+        %span.post_content= @item.content
 
-        -#   = image_tag 'heart_active.png', class: 'hidden active-heart'
-        -#   = image_tag 'heart_inactive.png', class: 'hidden inactive-heart'
-        -#   = link_to post_comments_path(@post.id) do
-        -#     %i.far.fa-comment
+      .item_comments_header
+        =link_to item_comments_path(@item) do
+          %p コメント一覧へ
 
-        -# .timeline_post_likes
-        -#   %p.post_likes= @post.likes.count
-        -#   %p liked your post
-        -# .timeline_post_content
-        -#   %p.post_name= @post.user.account_name
-        -#   %p.post_content= @post.content
-        
-        .timeline_post_icon
-          - if user_signed_in?
-            .post_icon_like.active_heart_wrap.hidden
-              = image_tag 'heart_active.png', class: 'active-heart'
-            .post_icon_like.inactive_heart_wrap.hidden
-              = image_tag 'heart_inactive.png', class: 'inactive-heart'
-          .post_icon_commetn
-            = image_tag 'timeline_comment.png'
-          .post_icon_share
-            = link_to 'https://twitter.com/share?ref_src=twsrc%5Etfw', target: '_blank' do
-              = image_tag 'timeline_share.png'
-        .timeline_post_like_comment
-          %p Jasmine and #{@item.like_count} other liked your post
-
-        .timeline_post_content
-          .post_user_name
-            %p Jmax_21
-          .post_content
-            %p Summer holiday :3
-
-        .comments_header
-          %h1 Comments
-        .comments_container
-
-        .comment_new.show_comment_form
-          %i.far.fa-comment
-        .comment_text_area.hidden
-          = text_area_tag :comment_content, ''
-          .comment_new.add_comment_btn
-            %span コメントを追加
-
+= javascript_pack_tag 'timeline'
