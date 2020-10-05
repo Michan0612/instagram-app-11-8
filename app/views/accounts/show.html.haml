@@ -1,24 +1,40 @@
 .inner#account-show{data: {account_id: @user.id}}
-  %h1.account_name= @user.display_name
-  = link_to root_path, class: 'to_timeline' do
-    %i.fas.fa-arrow-left
-  .profile_image.account_image
-    = image_tag @user.avatar_image, class: 'profile_icon'
-    .follow-btn.hidden Follow
-    .unfollow-btn.hidden Unfollow
-  .profile_infos
-    .profile_info.post
-      = @user.items.count
-      %h2 Posts
-    = link_to account_followers_path(@user), class: 'profile_info follower' do
-      = @user.follower_relationships.count
-      %h2 Followers
-    = link_to account_followings_path(@user), class: 'profile_info following' do
-      = @user.following_relationships.count
-      %h2 Following
-  .photos_sec
-    - @user.items.each do |item|
-      = link_to item_path(item) do
-        = image_tag item.photos.first
+  .header
+    = link_to root_path, class: 'to_timeline' do
+      %i.fas.fa-arrow-left
+    %p.profile-name= @user.display_name 
+
+  .circle-avatar
+    %img#avatar_img_prev.hidden{:src => "#"}
+    - if @user&.persisted? && @user&.avatar_image
+      = image_tag @user.avatar_image, class: 'avatar_present_img'
+    - else
+      = image_tag 'Ellipse.svg', class: 'avatar_present_img'
+  
+  .profile-text
+    .profile-two
+      %p.profile-num 
+        = @user.items.count
+      %p.profile-string
+        Posts
+    .profile-two.follower-following-wrap
+      = link_to account_followers_path(@user), class: 'profile_info follower' do
+        .profile-num.profile-num2 #{@user.follower_relationships.count}
+        %p.profile-string Followers
+    .profile-two.follower-following-wrap
+      = link_to account_followings_path(@user), class: 'profile_info following' do
+        .profile-num #{@user.following_relationships.count}
+        %p.profile-string Following
+
+  .account_post_images
+    .account_post_container
+      .slideshow
+        - @user.items.each_with_index do |item, index1|
+          %div{:class => "grid slideshow_slides_#{index1+1}"}
+            -item.photos.each_with_index do |photo, index2|    
+              = link_to item_path(item), {:class => "slide grid_item_#{index2+1}"} do
+                = image_tag photo
+          %div{:class => "slideshow_indicator slideshow_indicator_#{index1+1}"}
   .under
+
 = javascript_pack_tag 'profile'

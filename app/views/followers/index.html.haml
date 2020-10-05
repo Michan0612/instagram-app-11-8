@@ -1,8 +1,18 @@
 .inner
-  = link_to 'Profile', profile_path, class: 'to_profile'
-  .followers_index
+  .header
+    = link_to account_path(@user), class: 'to_account' do
+      %i.fas.fa-arrow-left
+    = link_to 'Followers', profile_path, class: 'to_profile'
+
+  .followings_index
     - @user.followers.each do |follower|
-      .follower_account
+      .following_account
         = link_to account_path(follower) do
-          = image_tag follower.avatar_image
-          %p= follower.display_name
+          - if @user&.persisted? && @user&.avatar_image
+            = image_tag follower.avatar_image, class: 'avatar_present_img'
+          - else
+            = image_tag 'Ellipse.svg', class: 'avatar_present_img'
+        .following_account_info
+          = link_to account_path(follower) do
+            %p= follower.display_name
+          %p Last seen 3 years ago

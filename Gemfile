@@ -32,6 +32,7 @@ gem 'active_model_serializers'
 gem 'mini_magick'
 gem 'active_decorator'
 gem 'sidekiq'
+gem 'jquery-easing-rails'
 
 
 

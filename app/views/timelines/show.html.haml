@@ -2,47 +2,44 @@
   .timeline_header
     =link_to new_item_path do
       %i.fas.fa-camera
-
+      
   .timeline_body
-    .timeline_post
-      .timeline_user_info
-        .user_info_icon
-          = image_tag 'timeline_icon', class: 'timeline_icon'
-          .user_info_contain
-            .user_name
-              %p Jmax_21
-            .image_created
-              %p 3 hours ago
-      - @items.each do |item|
-        = link_to item_path(item.id), class: 'timeline_post_images' do
-          .timeline_user_image
-            .grid_item_timeline1
-              =image_tag 'timeline_image1', class: 'grid_timeline_image1'
-            .grid_item_timeline2
-              =image_tag 'timeline_image2', class: 'grid_timeline_image2'
-            .grid_item_timeline3
-              =image_tag 'timeline_image3', class: 'grid_timeline_image3'
+    - @item_rankings.each_with_index do |item, index1|
+      .timeline_post#item-show{data: {post_id: item.id}}
+        = link_to account_path(item.user), class: 'timeline_post_top' do
+          .timeline_post_top_icon
+            = image_tag item.user.avatar_image
+          .timeline_post_top_name
+            .post_author
+              = item.user.display_name
+            .post_created
+              = item.created_at
+        .timeline_post_images
+          .timeline_post_container
+            .slideshow
+              %div{:class => "grid slideshow_slides_#{index1+1}"}
+                - item.photos.each_with_index do |photo, index2|
+                  = link_to item_path(item.id), {:class => "slide grid_item_#{index2+1}"} do
+                    = image_tag photo
+
+              %div{:class => "slideshow_indicator slideshow_indicator_#{index1+1}"}
 
         .timeline_post_icon
-          .item#item-show{data: {post_id: item.id}}
-            -if user_signed_in?
-              .post_icon_like.active_heart.hidden
-                = image_tag 'heart_active.png'
-              .post_icon_like.inactive-heart.hidden
-                = image_tag 'heart_inactive.png'
-          .post_icon_commets
-            = link_to item_comments_path(item) do
-              = image_tag 'timeline_comment.png'
+          - if user_signed_in?
+            .post_icon_like.active_heart_wrap.hidden
+              = image_tag 'heart_active.png', class: 'active-heart'
+            .post_icon_like.inactive_heart_wrap.hidden
+              = image_tag 'heart_inactive.png', class: 'inactive-heart'
+          .post_icon_comment
+            = image_tag 'timeline_comment.png'
           .post_icon_share
-            = image_tag 'timeline_share.png'
-
-        .timeline_post_like_comment
-          %p Jasmine and #{item.like_count} other liked your post
-
+            = link_to 'https://twitter.com/share?ref_src=twsrc%5Etfw', target: '_blank' do
+              = image_tag 'timeline_share.png'
+        .timeline_post_likes
+          %span.post_likes= item.likes.count
+          %span liked your post
         .timeline_post_content
-          .post_user_name
-            %p Jmax_21
-          .post_content
-            %p Summer holiday :3
+          %span.post_name= item.user.display_name
+          %span.post_content= item.content
           
   = javascript_pack_tag 'timeline'

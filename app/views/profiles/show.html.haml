@@ -4,26 +4,23 @@
     %p.profile-name= current_user.display_name 
 
   .border_room
-
     = render 'form', profile: @profile
-    
-
+  
   .profile-text
     .profile-two
       %p.profile-num 
-        44
+        = current_user.items.count
       %p.profile-string
         Posts
     .profile-two
-      %p.profile-num.profile-num2
-        110
-      %p.profile-string
-        Followers
+      = link_to account_followers_path(current_user), class: 'profile_info follower' do
+        .profile-num.profile-num2 #{current_user.follower_relationships.count}
+        %p.profile-string Followers
     .profile-two
-      %p.profile-num 
-        44
-      %p.profile-string
-        Following
+      = link_to account_followings_path(current_user), class: 'profile_info following' do
+        .profile-num #{current_user.following_relationships.count}
+        %p.profile-string Following
+  
   .grid
     .grid-item-1
       = image_tag 'Rectangle(1).svg', class: 'grid-img'

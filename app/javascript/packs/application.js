@@ -19,6 +19,10 @@ const appendNewComment = (comment) => {
   $('.comments_container').append(
     `<div class="post_comment"><p>${comment.content}</p></div>`
   )
+  $('.comments_container').append(
+    `<div class="post_avatar_info"><p>${comment.name}</p></div>`
+  )
+
 }
 
 const handleCommentForm = () => {
@@ -46,16 +50,16 @@ document.addEventListener('DOMContentLoaded', () => {
         $('#avatar_img_prev').attr('src', e.target.result);
         axios.put('/profile', {profile: {avatar: e.target.result}})
         
-      .then((res) => {
-        window.alert('成功！')
+          .then((res) => {
+            window.alert('成功！')
 
-        $('#avatar_img_prev').removeClass('hidden');
-        $('.avatar_present_img').remove();
-      })
+            $('#avatar_img_prev').removeClass('hidden');
+            $('.avatar_present_img').remove();
+          })
 
-      .catch((e) => {
-        window.alert('失敗！')
-      })
+          .catch((e) => {
+            window.alert('失敗！')
+          })
       }
     }
   }
@@ -65,6 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 });
 
+//コメント機能
 
 document.addEventListener('DOMContentLoaded', () => {
   const dataset = $('#item-show').data()
