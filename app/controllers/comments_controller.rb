@@ -21,7 +21,7 @@ class CommentsController < ApplicationController
     
         respond_to do |format|
             format.html { redirect_to :root }
-            format.json { render 'comment', handlers: 'jbuilder' }
+            format.json { render 'create.json.jbuilder' }
             # handlersで、 拡張子「.jbuilder」のファイルだと指定している。
             # format.json { render 'messages.json.jbuilder' }と書いても可
         end

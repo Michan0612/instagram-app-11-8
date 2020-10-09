@@ -19,10 +19,6 @@ const appendNewComment = (comment) => {
   $('.comments_container').append(
     `<div class="post_comment"><p>${comment.content}</p></div>`
   )
-  $('.comments_container').append(
-    `<div class="post_avatar_info"><p>${comment.name}</p></div>`
-  )
-
 }
 
 const handleCommentForm = () => {
@@ -96,6 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
       })
         .then((res) => {
           const comment = res.data
+          debugger
           appendNewComment(comment)
           $('#comment_content').val('')
         })
