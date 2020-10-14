@@ -26,6 +26,14 @@ class User < ApplicationRecord
     profile&.nickname || self.email.split('@').first
   end
 
+  def avatar_image
+    if profile&.avatar_image&.attached?
+      profile.avatar_image
+    else
+      'Ellipse.svg'
+    end
+  end
+
   def has_liked?(item)
     likes.exists?(item_id: item.id)
   end

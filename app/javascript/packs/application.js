@@ -16,8 +16,13 @@ const handleHeartDisplay = (hasLiked) => {
 }
 
 const appendNewComment = (comment) => {
+  debugger
   $('.comments_container').append(
-    `<div class="post_comment"><p>${comment.content}</p></div>`
+    `<div class="post_comment">
+    <p>${comment.content}</p>
+    <div>${comment.user.display_name}</div>
+    <div>${comment.user.avatar}</div>
+    </div>`
   )
 }
 
@@ -92,7 +97,6 @@ document.addEventListener('DOMContentLoaded', () => {
       })
         .then((res) => {
           const comment = res.data
-          debugger
           appendNewComment(comment)
           $('#comment_content').val('')
         })
