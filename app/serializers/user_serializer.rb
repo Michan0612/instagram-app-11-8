@@ -1,9 +1,11 @@
 class UserSerializer < ActiveModel::Serializer
-    attributes :id, :display_name, :avatar_image
+    include Rails.application.routes.url_helpers
+
+    attributes :id, :display_name, :avatar_with_image
     has_many :comments
     has_one :profile
 
-    def avatar_image
-        rails_blob_path(object.avatar_image, only_path: true) if object.avatar_image.attached?
+    def avatar_with_image
+        rails_blob_path(object.avatar_image) if object.avatar_image.attachment
     end
 end
