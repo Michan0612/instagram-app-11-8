@@ -73,6 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const dataset = $('#item-show').data()
   const itemId = dataset.postId
 
+
   axios.get(`/items/${itemId}/comments`)
 
     .then((response) => {
@@ -101,39 +102,39 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 
   // いいね機能
-  axios.get(`/items/${itemId}/like`)
-    .then((response) => {
-      const hasLiked = response.data.hasLiked
-      handleHeartDisplay(hasLiked)
-    })
+  // axios.get(`/items/${itemId}/like`)
+  //   .then((response) => {
+  //     const hasLiked = response.data.hasLiked
+  //     handleHeartDisplay(hasLiked)
+  //   })
   
-   $('.inactive_heart_wrap').on('click', () => {
-    axios.post(`/items/${itemId}/like`)
-      .then((response) => {
-        if (response.data.status === 'ok') {
-          $('.active_heart_wrap').removeClass('hidden')
-          $('.inactive_heart_wrap').addClass('hidden')
-        }
-      })
-      .catch((e) => {
-        window.alert('Error')
-        console.log(e)
-      })
-  })
+  //  $('.inactive_heart_wrap').on('click', () => {
+  //   axios.post(`/items/${itemId}/like`)
+  //     .then((response) => {
+  //       if (response.data.status === 'ok') {
+  //         $('.active_heart_wrap').removeClass('hidden')
+  //         $('.inactive_heart_wrap').addClass('hidden')
+  //       }
+  //     })
+  //     .catch((e) => {
+  //       window.alert('Error')
+  //       console.log(e)
+  //     })
+  // })
 
-  $('.active_heart_wrap').on('click', () => {
-    axios.delete(`/items/${itemId}/like`)
-      .then((response) => {
-        if (response.data.status === 'ok') {
-          $('.active_heart_wrap').addClass('hidden')
-          $('.inactive_heart_wrap').removeClass('hidden')
-        }
-      })
-      .catch((e) => {
-        window.alert('Error')
-        console.log(e)
-      })
-  })
+  // $('.active_heart_wrap').on('click', () => {
+  //   axios.delete(`/items/${itemId}/like`)
+  //     .then((response) => {
+  //       if (response.data.status === 'ok') {
+  //         $('.active_heart_wrap').addClass('hidden')
+  //         $('.inactive_heart_wrap').removeClass('hidden')
+  //       }
+  //     })
+  //     .catch((e) => {
+  //       window.alert('Error')
+  //       console.log(e)
+  //     })
+  // })
 });
 
 

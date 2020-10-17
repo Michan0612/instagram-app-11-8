@@ -26,9 +26,9 @@
 
         .timeline_post_icon
           - if user_signed_in?
-            .post_icon_like.active_heart_wrap.hidden
+            .post_icon_like.active_heart_wrap.hidden{:id => "#{item.id}"}
               = image_tag 'heart_active.png', class: 'active-heart'
-            .post_icon_like.inactive_heart_wrap.hidden
+            .post_icon_like.inactive_heart_wrap.hidden{:id => "#{item.id}"}
               = image_tag 'heart_inactive.png', class: 'inactive-heart'
           .post_icon_comment
             = image_tag 'timeline_comment.png'
