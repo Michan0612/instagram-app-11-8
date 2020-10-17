@@ -18,13 +18,15 @@ class CommentsController < ApplicationController
         @comment.user_id = current_user.id
         @user_name = @comment.user.display_name
         @comment.save!
+
+        render json: @comment, include: { user: [ :profile] }
     
-        respond_to do |format|
-            format.html { redirect_to :root }
-            format.json { render 'comment', handlers: 'jbuilder' }
-            # handlersで、 拡張子「.jbuilder」のファイルだと指定している。
-            # format.json { render 'messages.json.jbuilder' }と書いても可
-        end
+        # respond_to do |format|
+        #     format.html { redirect_to :root }
+        #     format.json { render 'create.json.jbuilder' }
+        #     # handlersで、 拡張子「.jbuilder」のファイルだと指定している。
+        #     # format.json { render 'messages.json.jbuilder' }と書いても可
+        # end
     end
 
     private

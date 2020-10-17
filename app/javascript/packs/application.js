@@ -17,12 +17,10 @@ const handleHeartDisplay = (hasLiked) => {
 
 const appendNewComment = (comment) => {
   $('.comments_container').append(
-    `<div class="post_comment"><p>${comment.content}</p></div>`
+    `<div class="comment_wrap_container"><img class='avatar_present_img' src='${comment.user.avatar_with_image}'>
+    <div class="comment_wrap_avatar"><p>${comment.user.display_name}</p>
+    <div class='comment_wrap_put_content'><p>${comment.content}</p></div></div></div>`
   )
-  $('.comments_container').append(
-    `<div class="post_avatar_info"><p>${comment.name}</p></div>`
-  )
-
 }
 
 const handleCommentForm = () => {
