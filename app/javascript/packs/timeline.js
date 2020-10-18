@@ -23,12 +23,13 @@ document.addEventListener('DOMContentLoaded', () => {
       handleHeartDisplay(hasLiked)
     })
   
-   $('.inactive_heart_wrap').on('click', () => {
-    axios.post(`/items/${itemId}/like`)
+  $('.inactive_heart_wrap').on('click', () => {
+    const content = $(this).attr('id')
+    axios.post(`/items/${content}/like`)
       .then((response) => {
         if (response.data.status === 'ok') {
-          $('.active_heart_wrap').removeClass('hidden')
-          $('.inactive_heart_wrap').addClass('hidden')
+          $(`#${content}.active_heart_wrap`).removeClass('hidden')
+          $(`#${content}.inactive_heart_wrap`).addClass('hidden')
         }
       })
       .catch((e) => {
@@ -38,11 +39,13 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 
   $('.active_heart_wrap').on('click', () => {
-    axios.delete(`/items/${itemId}/like`)
+    const content = $(this).attr('id')
+    debugger
+    axios.delete(`/items/${content}/like`)
       .then((response) => {
         if (response.data.status === 'ok') {
-          $('#${itemId}.active_heart_wrap').addClass('hidden')
-          $('#${itemId}.inactive_heart_wrap').removeClass('hidden')
+          $(`#${content}.active_heart_wrap`).addClass('hidden')
+          $(`#${content}.inactive_heart_wrap`).removeClass('hidden')
         }
       })
       .catch((e) => {
