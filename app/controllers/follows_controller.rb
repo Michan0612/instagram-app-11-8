@@ -7,7 +7,8 @@ class FollowsController < ApplicationController
   
     def create
       current_user.follow!(params[:account_id])
+      follows_count = User.find(params[:account_id]).follower_relationships.count
   
-      render json: { status: 'ok' }
+      render json: { status: 'ok', followCount: follows_count }
     end
 end

@@ -33,8 +33,7 @@ gem 'mini_magick'
 gem 'active_decorator'
 gem 'sidekiq'
 gem 'jquery-easing-rails'
-
-
+gem 'kaminari'
 
 
 # Use Active Storage variant

@@ -1,8 +1,13 @@
-.inner#account-show{data: {account_id: @user.id}}
+.inner#account-show{data: {account_id: @user.id, follower_id: current_user.id}}
   .header
     = link_to root_path, class: 'to_timeline' do
       %i.fas.fa-arrow-left
     %p.profile-name= @user.display_name 
+    .profile_top_follow
+      .follow_button.hidden.follow
+        Follow
+      .unfollow_button.hidden.unfollow
+        Unfollow
 
   .circle-avatar
     %img#avatar_img_prev.hidden{:src => "#"}
@@ -23,7 +28,7 @@
         %p.profile-string Followers
     .profile-two.follower-following-wrap
       = link_to account_followings_path(@user), class: 'profile_info following' do
-        .profile-num #{@user.following_relationships.count}
+        .profile-num.profile-num3 #{@user.following_relationships.count}
         %p.profile-string Following
 
   .account_post_images

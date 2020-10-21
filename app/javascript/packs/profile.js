@@ -11,18 +11,19 @@ document.addEventListener('DOMContentLoaded', () => {
     .then((response) => {
       const hasFollowed = response.data.hasFollowed
       if (hasFollowed) {
-        $('.unfollow-btn').removeClass('hidden')
+        $('.unfollow').removeClass('hidden')
       } else {
-        $('.follow-btn').removeClass('hidden')
+        $('.follow').removeClass('hidden')
       }
     })
 
-    $('.follow-btn').on('click', () => {
+    $('.follow').on('click', () => {
       axios.post(`/accounts/${accountId}/follow`)
         .then((response) => {
           if (response.data.status === 'ok') {
-            $('.unfollow-btn').removeClass('hidden')
-            $('.follow-btn').addClass('hidden')
+            $('.unfollow').removeClass('hidden')
+            $('.follow').addClass('hidden')
+            $('.profile-num2').text(`${response.data.followCount}`)
           }
         })
         .catch((e) => {
@@ -31,12 +32,13 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     })
 
-    $('.unfollow-btn').on('click', () => {
+    $('.unfollow').on('click', () => {
       axios.post(`/accounts/${accountId}/unfollow`)
         .then((response) => {
           if (response.data.status === 'ok') {
-            $('.follow-btn').removeClass('hidden')
-            $('.unfollow-btn').addClass('hidden')
+            $('.follow').removeClass('hidden')
+            $('.unfollow').addClass('hidden')
+            $('.profile-num2').text(`${response.data.followCount}`)
           }
         })
         .catch((e) => {

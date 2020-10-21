@@ -23,8 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
       handleHeartDisplay(hasLiked)
     })
   
-  $('.inactive_heart_wrap').on('click', () => {
-    const content = $(this).attr('id')
+  $('.inactive_heart_wrap').on('click', (e) => {
+    e.preventDefault();
+    const content = $(e.currentTarget).attr('id')
     axios.post(`/items/${content}/like`)
       .then((response) => {
         if (response.data.status === 'ok') {
@@ -38,9 +39,9 @@ document.addEventListener('DOMContentLoaded', () => {
       })
   })
 
-  $('.active_heart_wrap').on('click', () => {
-    const content = $(this).attr('id')
-    debugger
+  $('.active_heart_wrap').on('click', (e) => {
+    e.preventDefault();
+    const content = $(e.currentTarget).attr('id')
     axios.delete(`/items/${content}/like`)
       .then((response) => {
         if (response.data.status === 'ok') {
@@ -54,6 +55,15 @@ document.addEventListener('DOMContentLoaded', () => {
       })
   })
 });
+
+
+
+
+
+
+
+
+
 
 
 
