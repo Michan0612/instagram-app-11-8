@@ -21,7 +21,6 @@
             = comment.content
 
   .comments_container
-     
 
   .comment_new.show_comment_form
     = image_tag 'timeline_comment.png'
@@ -29,3 +28,9 @@
     = text_area_tag :comment_content, ''
     .comment_new.add_comment_btn
       %span コメントを追加
+      
+  = paginate @comments
+
+
+
+

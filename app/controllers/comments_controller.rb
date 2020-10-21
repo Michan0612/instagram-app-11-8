@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
     def index
         @comment = Comment.all
         @item = Item.find(params[:item_id])
-        @comments = @item.comments
+        @comments = @item.comments.page(params[:page]).per(5)
     end
 
     def new

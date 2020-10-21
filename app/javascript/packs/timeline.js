@@ -5,15 +5,16 @@ axios.defaults.headers.common['X-CSRF-Token'] = csrfToken()
 
 const handleHeartDisplay = (hasLiked) => {
   if (hasLiked) {
-    $('.active_heart').removeClass('hidden')
+    $('.active_heart_wrap').removeClass('hidden')
   } else {
-    $('.inactive-heart').removeClass('hidden')
+    $('.inactive_heart_wrap').removeClass('hidden')
   }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   const dataset = $('#item-show').data()
   const itemId = dataset.postId
+
 
   // いいね機能
   axios.get(`/items/${itemId}/like`)
@@ -22,12 +23,14 @@ document.addEventListener('DOMContentLoaded', () => {
       handleHeartDisplay(hasLiked)
     })
   
-   $('.inactive-heart').on('click', () => {
-    axios.post(`/items/${itemId}/like`)
+  $('.inactive_heart_wrap').on('click', (e) => {
+    e.preventDefault();
+    const content = $(e.currentTarget).attr('id')
+    axios.post(`/items/${content}/like`)
       .then((response) => {
         if (response.data.status === 'ok') {
-          $('.active_heart_wrap').removeClass('hidden')
-          $('.inactive_heart_wrap').addClass('hidden')
+          $(`#${content}.active_heart_wrap`).removeClass('hidden')
+          $(`#${content}.inactive_heart_wrap`).addClass('hidden')
         }
       })
       .catch((e) => {
@@ -36,20 +39,31 @@ document.addEventListener('DOMContentLoaded', () => {
       })
   })
 
-  $('.active_heart').on('click', () => {
-    axios.delete(`/items/${itemId}/like`)
+  $('.active_heart_wrap').on('click', (e) => {
+    e.preventDefault();
+    const content = $(e.currentTarget).attr('id')
+    axios.delete(`/items/${content}/like`)
       .then((response) => {
         if (response.data.status === 'ok') {
-          $('.active_heart_wrap').addClass('hidden')
-          $('.inactive_heart_wrap').removeClass('hidden')
+          $(`#${content}.active_heart_wrap`).addClass('hidden')
+          $(`#${content}.inactive_heart_wrap`).removeClass('hidden')
         }
       })
       .catch((e) => {
         window.alert('Error')
         console.log(e)
       })
-  })  
+  })
 });
+
+
+
+
+
+
+
+
+
 
 
 

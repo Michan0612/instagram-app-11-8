@@ -18,7 +18,7 @@
         %p.profile-string Followers
     .profile-two
       = link_to account_followings_path(current_user), class: 'profile_info following' do
-        .profile-num #{current_user.following_relationships.count}
+        .profile-num.profile-num3 #{current_user.following_relationships.count}
         %p.profile-string Following
   
   .grid
