@@ -5,18 +5,16 @@ RSpec.describe Item, type: :model do
   include ActionDispatch::TestProcess
 
     context '内容が入力されている場合' do
-      describe '#photos' do
-        subject { create(:item).photos }
-        it { is_expected.to be_an_instance_of(ActiveStorage::Attached::Many) }
+     
+
+      before do
+        @item = build(:item, user: user)
+        @item.photos = fixture_file_upload(Rack::Test::UploadedFile.new(Rails.root.join('spec', 'fixtures', 'images', 'avatar1.png'), 'image/png'))
       end
 
-      # before do
-      #   @item = build(:item, user: user)
-      # end
-
-      # it 'is valid with an image' do
-      #   expect(@item).to be_valid
-      # end
+      it 'is valid with an image' do
+        expect(@item).to be_valid
+      end
     end
 
   # context '内容の文字が一文字の場合' do
