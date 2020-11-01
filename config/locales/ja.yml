@@ -6,3 +6,13 @@ ja:
       previous: <i class="fas fa-angle-left"></i>
       next: <i class="fas fa-angle-right"></i>
       truncate: "..."
+
+  activerecord:
+    errors: 
+      models: 
+        item: 
+          attributes:
+            user: 'ユーザー'
+            photos: 
+              blank: 'ブランク'
+  
