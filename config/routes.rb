@@ -11,7 +11,6 @@ Rails.application.routes.draw do
 
   resources :items do
     resources :comments, only: [:index, :new, :create]
-    resource :like, only: [:show, :create, :destroy]
   end
 
   resources :accounts, only: [:show] do
@@ -27,9 +26,16 @@ Rails.application.routes.draw do
     resource :like, only: [:show, :create, :destroy]
   end
 
-  resource :profile
   
+  namespace :api, defaults: {format: :json} do
+    scope '/items/:item_id' do
+      resource :like, only: [:show, :create, :destroy]
+    end
+  end
 
+  scope module: :apps do
+    resource :profile
+  end
 
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
