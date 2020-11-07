@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // いいね機能
-  axios.get(`/items/${itemId}/like`)
+  axios.get(`/api/items/${itemId}/like`)
     .then((response) => {
       const hasLiked = response.data.hasLiked
       handleHeartDisplay(hasLiked)
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
   $('.inactive_heart_wrap').on('click', (e) => {
     e.preventDefault();
     const content = $(e.currentTarget).attr('id')
-    axios.post(`/items/${content}/like`)
+    axios.post(`/api/items/${content}/like`)
       .then((response) => {
         if (response.data.status === 'ok') {
           $(`#${content}.active_heart_wrap`).removeClass('hidden')
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
   $('.active_heart_wrap').on('click', (e) => {
     e.preventDefault();
     const content = $(e.currentTarget).attr('id')
-    axios.delete(`/items/${content}/like`)
+    axios.delete(`/api/items/${content}/like`)
       .then((response) => {
         if (response.data.status === 'ok') {
           $(`#${content}.active_heart_wrap`).addClass('hidden')

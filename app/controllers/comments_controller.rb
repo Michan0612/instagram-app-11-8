@@ -1,15 +1,10 @@
 class CommentsController < ApplicationController
-    before_action :forbid_logout_user
+    before_action :authenticate_user!
 
     def index
         @comment = Comment.all
         @item = Item.find(params[:item_id])
         @comments = @item.comments.page(params[:page]).per(5)
-    end
-
-    def new
-        item = Item.find(params[:item_id])
-        @comment = item.comments.build
     end
 
     def create
@@ -20,13 +15,6 @@ class CommentsController < ApplicationController
         @comment.save!
 
         render json: @comment, include: { user: [ :profile] }
-    
-        # respond_to do |format|
-        #     format.html { redirect_to :root }
-        #     format.json { render 'create.json.jbuilder' }
-        #     # handlersで、 拡張子「.jbuilder」のファイルだと指定している。
-        #     # format.json { render 'messages.json.jbuilder' }と書いても可
-        # end
     end
 
     private
