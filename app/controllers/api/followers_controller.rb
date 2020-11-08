@@ -1,4 +1,4 @@
-class Apps::FollowersController < Apps::ApplicationController
+class Api::FollowersController < Api::ApplicationController
     def index
       @user = User.find(params[:account_id])
     end
