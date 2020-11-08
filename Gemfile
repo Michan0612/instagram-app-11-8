@@ -35,6 +35,9 @@ gem 'sidekiq'
 gem 'jquery-easing-rails'
 gem 'kaminari'
 gem 'faker'
+gem 'sendgrid-ruby'
+gem 'aws-sdk-s3', require: false
+
 
 
 # Use Active Storage variant
@@ -49,8 +52,9 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'rspec-rails'
   gem 'factory_bot_rails'
+  gem 'rubocop-rails'
+  gem 'dotenv-rails'
 
-  
 end
 
 group :development do
