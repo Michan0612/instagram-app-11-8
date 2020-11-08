@@ -1,5 +1,4 @@
 class ItemsController < ApplicationController
-    before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
     def show
         @item = Item.find_by(id: params[:id])
     end
