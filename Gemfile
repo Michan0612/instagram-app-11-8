@@ -37,6 +37,7 @@ gem 'kaminari'
 gem 'faker'
 gem 'sendgrid-ruby'
 gem 'aws-sdk-s3', require: false
+gem 'rails_12factor', group: :production
 
 
 
