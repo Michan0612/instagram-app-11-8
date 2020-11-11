@@ -12,7 +12,7 @@ class Apps::ProfilesController < Apps::ApplicationController
       @profile.assign_attributes(profile_params)
       if @profile.save!
         @profile.parse_base64(params[:profile][:avatar])
-        
+
         render json: @profile, status: :created, location: @profile
       else
         render json: @profile.errors, status: :unprocessable_entity
