@@ -1,6 +1,5 @@
 class Apps::ProfilesController < Apps::ApplicationController
     def show
-      @profile = current_user.profile
     end
 
     def edit
@@ -34,6 +33,6 @@ class Apps::ProfilesController < Apps::ApplicationController
 
     private
     def profile_params
-      params.require(:profile).permit(:avatar)
+      params.require(:profile).permit(:avatar, :username, :email)
     end
 end

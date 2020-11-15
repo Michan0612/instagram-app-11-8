@@ -1,15 +1,15 @@
-.inner#account-show{data: {account_id: @profile.id, follower_id: current_user.id}}
+.inner#account-show{data: {account_id: current_user.id, follower_id: current_user.id}}
   .header
     = link_to root_path, class: 'to_timeline' do
       %i.fas.fa-arrow-left
-    %p.profile-name= @profile.user.display_name
+    %p.profile-name= current_user.display_name
   .border_room
-    = render 'form', profile: @profile
+    = render 'form', profile: current_user
 
   .profile-text
     .profile-two
       %p.profile-num
-        = @profile.user.items.count
+        = current_user.items.count
       %p.profile-string
         Posts
     .profile-two.follower-following-wrap
@@ -24,7 +24,7 @@
   .account_post_images
     .account_post_container
       .slideshow
-        - @profile.user.items.each_with_index do |item, index1|
+        - current_user.items.each_with_index do |item, index1|
           %div{:class => "grid slideshow_slides_#{index1+1}"}
             -item.photos.each_with_index do |photo, index2|
               = link_to item_path(item), {:class => "slide grid_item_#{index2+1}"} do
