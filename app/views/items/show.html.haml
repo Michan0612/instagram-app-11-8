@@ -3,27 +3,27 @@
     = link_to account_path(@item.user), class: 'to_account' do
       %i.fas.fa-arrow-left
     = link_to 'Items', profile_path, class: 'to_profile'
-      
+
   .item_body
     .item_post#item-show{data: {post_id: @item.id}}
-      = link_to account_path(@item.user), class: 'item_post_top' do
-        .item_post_top_icon
-          = image_tag @item.user.avatar_image
-        .item_post_top_name
-          .post_author
-            = @item.user.display_name
-          .post_created
-            = @item.created_at
-      .item_post_images
-        .item_post_container
-          .slideshow
-            %div{:class => "grid slideshow_slides_1"}
-              - @item.photos.each_with_index do |photo, index2|
-                = link_to item_path(@item.id), {:class => "slide grid_item_#{index2+1}"} do
-                  = image_tag photo
+      .item-inner
+        = link_to account_path(@item.user), class: 'item_post_top' do
+          .item_post_top_icon
+            = image_tag @item.user.avatar_image
+          .item_post_top_name
+            .post_author
+              = @item.user.display_name
+            .post_created
+              = @item.created_at
+        .item_post_images
+          .item_post_container
+            .slideshow
+              %div{:class => "grid slideshow_slides_1"}
+                - @item.photos.each_with_index do |photo, index2|
+                  = link_to item_path(@item.id), {:class => "slide grid_item_#{index2+1}"} do
+                    = image_tag photo
+              %div{:class => "slideshow_indicator slideshow_indicator_1"}
 
-            %div{:class => "slideshow_indicator slideshow_indicator_1"}
-      
       .item_post_icon
         - if user_signed_in?
           .post_icon_like.active_heart_wrap.hidden{:id => "#{@item.id}"}
@@ -42,8 +42,8 @@
         %span.post_name= @item.user.display_name
         %span.post_content= @item.content
 
-      .item_comments_header
-        =link_to item_comments_path(@item) do
-          %p コメント一覧へ
+  .item_comments_header
+    =link_to item_comments_path(@item) do
+      %p コメント一覧へ
 
 = javascript_pack_tag 'timeline'

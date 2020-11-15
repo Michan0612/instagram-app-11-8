@@ -1,0 +1,51 @@
+.timeline_contain
+  = render 'commons/tabs'
+
+  .timeline_body
+    - @items.each_with_index do |item, index1|
+      .timeline_post#item-show{data: {post_id: item.id}}
+        .timeline-inner
+          = link_to account_path(item.user), class: 'timeline_post_top' do
+            .timeline_post_top_icon
+              = image_tag item.user.avatar_image
+            .timeline_post_top_name
+              .post_author
+                = item.user.display_name
+              .post_created
+                = item.created_at
+          .timeline_post_images
+            .timeline_post_container
+              .slideshow
+                %div{:class => "grid slideshow_slides_#{index1+1}"}
+                  - item.photos.each_with_index do |photo, index2|
+                    = link_to item_path(item.id), {:class => "slide grid_item_#{index2+1}"} do
+                      = image_tag photo
+
+                %div{:class => "slideshow_indicator slideshow_indicator_#{index1+1}"}
+
+          .timeline_post_icon
+            - if user_signed_in?
+              .post_icon_like.active_heart_wrap.hidden{:id => "#{item.id}"}
+                = image_tag 'heart_active.png', class: 'active-heart'
+              .post_icon_like.inactive_heart_wrap.hidden{:id => "#{item.id}"}
+                = image_tag 'heart_inactive.png', class: 'inactive-heart'
+            .post_icon_comment
+              = image_tag 'timeline_comment.png'
+            .post_icon_share
+              = link_to 'https://twitter.com/share?ref_src=twsrc%5Etfw', target: '_blank' do
+                = image_tag 'timeline_share.png'
+          .timeline_post_likes
+            %span.post_likes= item.likes.count
+            %span liked your post
+          .timeline_post_content
+            %span.post_name= item.user.display_name
+            %span.post_content= item.content
+
+  .timeline_header
+    =link_to new_item_path, class: 'float_btn' do
+      %i.fas.fa-camera
+
+  .pagination-inner
+    = paginate @items
+
+  = javascript_pack_tag 'timeline'

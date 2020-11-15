@@ -1,5 +1,9 @@
 class ItemsController < ApplicationController
     before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+    def index
+      @items = Item.all.order(created_at: :desc).page(params[:page]).per(5)
+    end
+
     def show
         @item = Item.find_by(id: params[:id])
     end
@@ -18,7 +22,7 @@ class ItemsController < ApplicationController
         end
     end
 
-    private 
+    private
     def item_params
       params.require(:item).permit(:content, {photos: []})
     end

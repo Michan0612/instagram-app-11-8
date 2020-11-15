@@ -11,6 +11,7 @@
 @import 'following';
 @import 'follower';
 @import 'comment';
+@import 'tabs';
 
 div {
     margin: 0;
@@ -50,18 +51,35 @@ p {
 }
 
 
-.pagination>li>a {          
+.pagination>li>a {
   border: none;     /*枠線をなくす*/
   color: #696969;   /*文字の色を変える*/
 }
 
 /* 表示しているページ番号のデザイン */
-.pagination>.active>a {     
+.pagination>.active>a {
   background: #93c9ff;     /*背景の色を変える*/
   border-radius: 15px;     /*角を丸くする*/
 }
 
 /*ホバー時のデザイン*/
-.pagination>li>a:hover {        
+.pagination>li>a:hover {
   border-radius: 15px;    /*角を丸くする*/
 }
+
+// 記事作成ボタンのデザイン
+.float_btn {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    width: 64px;
+    height: 64px;
+    border-radius: 100%;
+    text-align: center;
+    background-color: $primary-color;
+    color: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+    i {
+      margin-top: 22px;
+    }
+  }

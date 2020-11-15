@@ -7,7 +7,7 @@ class Apps::ProfilesController < Apps::ApplicationController
       @profile = current_user.prepare_profile
     end
 
-    def update 
+    def update
       @profile = current_user.prepare_profile
       @profile.assign_attributes(profile_params)
       if @profile.save!
@@ -23,15 +23,15 @@ class Apps::ProfilesController < Apps::ApplicationController
     #   @profile = current_user.build_profile(profile_params)
     #   if @profile.save!
     #     @profile.parse_base64(params[:profile][:avatar])
-        
+
     #     render json: @profile, status: :created, location: @profile
     #   else
     #     render json: @profile.errors, status: :unprocessable_entity
     #   end
     # end
 
-    
-    
+
+
     private
     def profile_params
       params.require(:profile).permit(:avatar)

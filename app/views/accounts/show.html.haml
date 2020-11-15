@@ -2,12 +2,7 @@
   .header
     = link_to root_path, class: 'to_timeline' do
       %i.fas.fa-arrow-left
-    %p.profile-name= @user.display_name 
-    .profile_top_follow
-      .follow_button.hidden.follow
-        Follow
-      .unfollow_button.hidden.unfollow
-        Unfollow
+    %p.profile-name= @user.display_name
 
   .circle-avatar
     %img#avatar_img_prev.hidden{:src => "#"}
@@ -15,10 +10,10 @@
       = image_tag @user.avatar_image, class: 'avatar_present_img'
     - else
       = image_tag 'Ellipse.svg', class: 'avatar_present_img'
-  
+
   .profile-text
     .profile-two
-      %p.profile-num 
+      %p.profile-num
         = @user.items.count
       %p.profile-string
         Posts
@@ -36,10 +31,17 @@
       .slideshow
         - @user.items.each_with_index do |item, index1|
           %div{:class => "grid slideshow_slides_#{index1+1}"}
-            -item.photos.each_with_index do |photo, index2|    
+            -item.photos.each_with_index do |photo, index2|
               = link_to item_path(item), {:class => "slide grid_item_#{index2+1}"} do
                 = image_tag photo
           %div{:class => "slideshow_indicator slideshow_indicator_#{index1+1}"}
+
+  .timeline_header.profile_top_follow
+    .follow_button.hidden.follow.float_btn
+      Follow
+    .unfollow_button.hidden.unfollow.float_btn
+      Unfollow
+
   .under
 
-= javascript_pack_tag 'profile'
+  = javascript_pack_tag 'profile'

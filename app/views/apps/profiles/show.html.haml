@@ -1,42 +1,36 @@
-.profile-container
+.inner#account-show{data: {account_id: @profile.id, follower_id: current_user.id}}
   .header
-    %i.fas.fa-arrow-left
-    %p.profile-name= current_user.display_name 
-
+    = link_to root_path, class: 'to_timeline' do
+      %i.fas.fa-arrow-left
+    %p.profile-name= @profile.user.display_name
   .border_room
     = render 'form', profile: @profile
-  
+
   .profile-text
     .profile-two
-      %p.profile-num 
-        = current_user.items.count
+      %p.profile-num
+        = @profile.user.items.count
       %p.profile-string
         Posts
-    .profile-two
+    .profile-two.follower-following-wrap
       = link_to account_followers_path(current_user), class: 'profile_info follower' do
         .profile-num.profile-num2 #{current_user.follower_relationships.count}
         %p.profile-string Followers
-    .profile-two
+    .profile-two.follower-following-wrap
       = link_to account_followings_path(current_user), class: 'profile_info following' do
         .profile-num.profile-num3 #{current_user.following_relationships.count}
         %p.profile-string Following
-  
-  .grid
-    .grid-item-1
-      = image_tag 'Rectangle(1).svg', class: 'grid-img'
-    .grid-item-2
-      = image_tag 'Rectangle(2).svg', class: 'grid-img'
-    .grid-item-3
-      = image_tag 'Rectangle(3).png', class: 'grid-img'
-    .grid-item-4
-      = image_tag 'Rectangle(4).png', class: 'grid-img'
-    .grid-item-5
-      = image_tag 'Rectangle(5).svg', class: 'grid-img'
-    .grid-item-6
-      = image_tag 'Rectangle(6).png', class: 'grid-img'
 
-  .border
+  .account_post_images
+    .account_post_container
+      .slideshow
+        - @profile.user.items.each_with_index do |item, index1|
+          %div{:class => "grid slideshow_slides_#{index1+1}"}
+            -item.photos.each_with_index do |photo, index2|
+              = link_to item_path(item), {:class => "slide grid_item_#{index2+1}"} do
+                = image_tag photo
+          %div{:class => "slideshow_indicator slideshow_indicator_#{index1+1}"}
 
-  
+  .under
 
-
+  = javascript_pack_tag 'profile'

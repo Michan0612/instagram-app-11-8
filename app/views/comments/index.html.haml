@@ -4,11 +4,11 @@
       = link_to 'javascript:history.back()', class: 'to_account' do
         %i.fas.fa-arrow-left
     = link_to 'Comments', profile_path, class: 'to_profile'
-    
+
   .comment_index
     - @comments.each do |comment|
       .comment_account
-        = link_to account_path(comment) do
+        = link_to account_path(comment.user) do
           - if comment.user&.persisted? && comment.user&.avatar_image
             = image_tag comment.user.avatar_image, class: 'avatar_present_img'
           - else
@@ -28,9 +28,5 @@
     = text_area_tag :comment_content, ''
     .comment_new.add_comment_btn
       %span コメントを追加
-      
+
   = paginate @comments
-
-
-
-

@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         $('#avatar_img_prev').attr('src', e.target.result);
         axios.put('/profile', {profile: {avatar: e.target.result}})
-        
+
           .then((res) => {
             window.alert('成功！')
 
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
     handleCommentForm()
-  
+
   $('.add_comment_btn').on('click', () => {
     const content = $('#comment_content').val()
     if (!content) {
@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
   //     const hasLiked = response.data.hasLiked
   //     handleHeartDisplay(hasLiked)
   //   })
-  
+
   //  $('.inactive_heart_wrap').on('click', () => {
   //   axios.post(`/items/${itemId}/like`)
   //     .then((response) => {
@@ -136,5 +136,3 @@ document.addEventListener('DOMContentLoaded', () => {
   //     })
   // })
 });
-
-
