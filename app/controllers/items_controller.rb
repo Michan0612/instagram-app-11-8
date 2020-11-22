@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-    before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+    before_action :authenticate_user!
     def index
       @items = Item.all.order(created_at: :desc).page(params[:page]).per(5)
     end
