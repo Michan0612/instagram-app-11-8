@@ -1,8 +1,8 @@
 .inner
   .header
-    = link_to account_path(@user), class: 'to_account' do
+    = link_to 'javascript:history.back()', class: 'to_account' do
       %i.fas.fa-arrow-left
-    = link_to 'Follofings', profile_path, class: 'to_profile'
+    %h1.to_profile Follofings
 
   .followings_index
     - @user.followings.each do |following|
