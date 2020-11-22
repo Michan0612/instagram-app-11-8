@@ -1,0 +1,20 @@
+@import 'variables';
+
+$avatar-size: 40px;
+$header-padding-y: 16px;
+$back-icon-size: 16px;
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: $header-padding-y 16px;
+  font-weight: bold;
+
+
+  &_avatar {
+    width: $avatar-size;
+    height: $avatar-size;
+    border-radius: 100%;
+    background-color: #93c9ff;
+  }
+}

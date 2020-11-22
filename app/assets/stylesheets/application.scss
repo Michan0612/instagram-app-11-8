@@ -12,6 +12,8 @@
 @import 'follower';
 @import 'comment';
 @import 'tabs';
+@import 'commons';
+@import 'header';
 
 div {
     margin: 0;
@@ -50,6 +52,9 @@ p {
     width: 100%;
 }
 
+.pagination {
+  margin-top: 200px;
+}
 
 .pagination>li>a {
   border: none;     /*枠線をなくす*/
@@ -71,6 +76,22 @@ p {
 .float_btn {
     position: fixed;
     bottom: 16px;
+    right: 16px;
+    width: 64px;
+    height: 64px;
+    border-radius: 100%;
+    text-align: center;
+    background-color: $primary-color;
+    color: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+    i {
+      margin-top: 22px;
+    }
+  }
+
+.float_btn_avatar {
+    position: fixed;
+    bottom: 100px;
     right: 16px;
     width: 64px;
     height: 64px;

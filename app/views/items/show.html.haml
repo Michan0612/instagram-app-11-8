@@ -1,8 +1,8 @@
 .item_contain
   .item_header
-    = link_to account_path(@item.user), class: 'to_account' do
+    = link_to 'javascript:history.back()', class: 'to_account' do
       %i.fas.fa-arrow-left
-    = link_to 'Items', profile_path, class: 'to_profile'
+    %h1.to_profile Items
 
   .item_body
     .item_post#item-show{data: {post_id: @item.id}}

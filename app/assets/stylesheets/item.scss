@@ -21,7 +21,7 @@
     margin-top: 46px;
     .item_post {
       margin: 0 auto;
-      margin-top: 39px;
+      margin-top: 100px;
       .item_post_top {
         display: flex;
         text-decoration: none;
@@ -43,6 +43,7 @@
       }
 
       .item_post_images {
+        margin-top: 20px;
         .item_post_container {
           .slideshow {
               height: 225px;
@@ -177,12 +178,13 @@
 
       .item_post_icon {
         display: flex;
+        margin-top: 20px;
         .post_icon_comment {
           margin: 0 14px;
         }
       }
       .item_post_likes {
-        margin-top: 9px;
+        margin-top: 10px;
         .post_likes {
 
          }

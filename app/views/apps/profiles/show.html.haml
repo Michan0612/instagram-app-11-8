@@ -1,6 +1,6 @@
 .inner#account-show{data: {account_id: current_user.id, follower_id: current_user.id}}
   .header
-    = link_to root_path, class: 'to_timeline' do
+    = link_to 'javascript:history.back()', class: 'to_timeline' do
       %i.fas.fa-arrow-left
     %p.profile-name= current_user.display_name
   .border_room
