@@ -21,15 +21,15 @@
         .profile-num.profile-num3 #{current_user.following_relationships.count}
         %p.profile-string Following
 
-  .account_post_images
-    .account_post_container
+.account_post_images
+  .account_post_container
+    - current_user.items.each_with_index do |item, index1|
       .slideshow
-        - current_user.items.each_with_index do |item, index1|
-          %div{:class => "grid slideshow_slides_#{index1+1}"}
-            -item.photos.each_with_index do |photo, index2|
-              = link_to item_path(item), {:class => "slide grid_item_#{index2+1}"} do
-                = image_tag photo
-          %div{:class => "slideshow_indicator slideshow_indicator_#{index1+1}"}
+        %div{:class => "grid slideshow_slides_#{index1+1}"}
+          -item.photos.each_with_index do |photo, index2|
+            = link_to item_path(item), {:class => "slide grid_item_#{index2+1}"} do
+              = image_tag photo
+        %div{:class => "slideshow_indicator slideshow_indicator_#{index1+1}"}
 
   .under
 

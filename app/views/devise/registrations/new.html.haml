@@ -16,6 +16,12 @@
       - if @minimum_password_length
         %em
       = f.password_field :password, autocomplete: "new-password", class: 'input_room'
+
+    -# = f.fields_for :profile do |f|
+    -#   .field
+    -#     = f.label :'アバター画像'
+    -#     = f.file_field :avatar
+
     .actions
       = f.submit "CREATE ACCOUNT", class: 'submit_btn'
   .border

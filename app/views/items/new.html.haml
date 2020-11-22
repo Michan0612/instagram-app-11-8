@@ -4,7 +4,7 @@
   = form_with model: @item, url: items_path, method: :post, local: true do |f|
     .form_header
       = link_to 'Cancel', root_path, class: 'post_cancel'
-      %h1 Status
+      %h1.header_name Status
       .actions
         = f.submit :Post, class: 'post_btn'
     .user_ui
@@ -14,6 +14,5 @@
       %label.content
       = f.text_field :content, class: 'post_content', placeholder: 'What\'s on your mind?'
     .post_image_field
-      %label.photos
-        + Album
+      = f.label :photos, '+ Album', class: "image_input_btn"
       = f.file_field :photos, multiple: true, class: 'post_photos'

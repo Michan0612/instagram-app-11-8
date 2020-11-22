@@ -2,7 +2,7 @@
   = render 'commons/tabs'
 
   .timeline_body
-    - @items.each_with_index do |item, index1|
+    - items.each_with_index do |item, index1|
       .timeline_post#item-show{data: {post_id: item.id}}
         .timeline-inner
           = link_to account_path(item.user), class: 'timeline_post_top' do
@@ -46,6 +46,6 @@
       %i.fas.fa-camera
 
   .pagination-inner
-    = paginate @items
+    = paginate items
 
   = javascript_pack_tag 'timeline'

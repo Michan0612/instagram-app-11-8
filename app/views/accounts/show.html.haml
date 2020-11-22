@@ -28,8 +28,8 @@
 
   .account_post_images
     .account_post_container
-      .slideshow
-        - @user.items.each_with_index do |item, index1|
+      - @user.items.each_with_index do |item, index1|
+        .slideshow
           %div{:class => "grid slideshow_slides_#{index1+1}"}
             -item.photos.each_with_index do |photo, index2|
               = link_to item_path(item), {:class => "slide grid_item_#{index2+1}"} do

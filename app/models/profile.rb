@@ -1,6 +1,6 @@
 class Profile < ApplicationRecord
     belongs_to :user
-    has_one_attached :avatar_image
+    has_one_attached :avatar_image_1
     attr_accessor :avatar
 
     def parse_base64(avatar)
@@ -15,19 +15,19 @@ class Profile < ApplicationRecord
             attach_image(filename)
         end
     end
-    
+
     private
     def create_extension(avatar)
         content_type = rex_image(avatar)
         content_type[%r/\b(?!.*\/).*/]
     end
-    
+
     def rex_image(avatar)
         avatar[/(image\/[a-z]{3,4})|(application\/[a-z]{3,4})/]
     end
-    
+
     def attach_image(filename)
-        avatar_image.attach(io: File.open("#{Rails.root}/tmp/#{filename}"), filename: filename, content_type: 'image/png')
+        avatar_image_1.attach(io: File.open("#{Rails.root}/tmp/#{filename}"), filename: filename, content_type: 'image/png')
         FileUtils.rm("#{Rails.root}/tmp/#{filename}")
     end
 end

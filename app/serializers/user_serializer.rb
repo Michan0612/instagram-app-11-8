@@ -6,7 +6,7 @@ class UserSerializer < ActiveModel::Serializer
     has_one :profile
 
     def avatar_with_image
-        rails_blob_path(object.avatar_image) if object.avatar_image.attachment
+        rails_blob_path(object.profile.avatar_image_1) if object.profile.avatar_image_1.attachment
     end
 end
 # 必要な記述なのでテストが終わったらコメントアウトを消しましょう

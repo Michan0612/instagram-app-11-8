@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   mount Sidekiq::Web => '/sidekiq' if Rails.env.development?
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 
-  devise_for :users
+  Rails.application.routes.draw do
+    devise_for :users, controllers: { registrations: 'users/registrations' }
+  end
 
   root to: 'items#index'
 
